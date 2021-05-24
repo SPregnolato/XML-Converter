@@ -106,7 +106,10 @@ def parseXML(xmlfile):
         item_values = []
         for item in list(invoice_element):
             item_keys.append(item.tag)
-            item_values.append(item.text.encode('utf8').decode('utf8'))
+            try:
+                item_values.append(item.text.encode('utf8').decode('utf8'))
+            except:
+                item_values.append(None)
         invoice_element_dic[i] = {item_keys[i]: item_values[i] for i in range(len(item_keys))}  
         i+=1
     
